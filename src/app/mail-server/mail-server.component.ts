@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import express from 'express'; 
-import { Request, Response } from "express";
-import * as cors from 'cors';
-import * as bodyParser from 'body-parser';
-import { SMTPClient } from 'emailjs';
+import * as nodemailer from 'nodemailer';
 
 @Component({
   selector: 'app-mail-server',
@@ -11,38 +7,34 @@ import { SMTPClient } from 'emailjs';
   styleUrls: ['./mail-server.component.scss']
 })
 export class MailServerComponent implements OnInit {
-  
+  // https://subscription.packtpub.com/book/application_development/9781786468710/12/ch12lvl1sec71/sending-mail
   constructor() { }
   
   ngOnInit(): void {
-    this.sendMail();
   }
+
+  sendMailToWally() {
+    const transporter = nodemailer.createTransport( 
+      `smtps://<username>%40gmail.com:<password>@smtp.gmail.com` 
+    ); 
   
-  sendMail() {
-    // create a new Express application instance 
-  const app = new express();
-  //configure the Express middleware to accept CORS requests and parse request body into JSON
-app.use(cors({origin: "*" }));
-app.use(bodyParser.json());
-
-//start application server on port 3000
-app.listen(3000, () => {
-  console.log("The server started on port 3000");
-});
-
-// define a sendmail endpoint, which will send emails and response with the corresponding status
-app.post("/sendmail", (req, res) => {
-  console.log("request came");
-  let message = 'hello-world';
-  let user = req.body;
-  if (res.send(message)) {
-    console.log('email sent');
-  } else {
-    console.log(' some thing went lost in translation');
+    const mailOptions = { 
+      from : 'from_test@gmail.com', 
+      to : 'to_test@gmail.com', 
+      subject : 'Hello', 
+      text: 'Hello from node.js' 
+    }; 
+  
+    transporter.sendMail( mailOptions, (error, info) => { 
+      if (error) { 
+        return console.log(`error: ${error}`); 
+      } 
+      console.log(`Message Sent ${info.response}`); 
+    }); 
   }
-  });
-}
 
+  
+  
 
 
 
