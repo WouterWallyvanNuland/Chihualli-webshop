@@ -3,6 +3,7 @@ import express from 'express';
 import { Request, Response } from "express";
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
+import { SMTPClient } from 'emailjs';
 
 @Component({
   selector: 'app-mail-server',
