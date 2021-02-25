@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+  font-family: mesa;
+  src: url(assets/cactus-sandwich-font/CactusSandwich.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: tequila;
+  src: url(assets/mexican-tequila/MexicanTequila.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: venezia;
+  src: url(assets/venezia-font/VENEZIA_.TTF) format("opentype");
+}
+
+@font-face {
+  font-family: chimichanga;
+  src: url(assets/ji-chimichanga-font/Chimichanga.ttf) format("opentype");
+}
